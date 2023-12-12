@@ -59,10 +59,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ProgressBar.cs" />
+    <Compile Include="Assets\Scripts\Orders\OrderCounter.cs" />
+    <Compile Include="Assets\Scripts\ClientUnitSystem.cs" />
+    <Compile Include="Assets\Scripts\Orders\OrderCounterVisual.cs" />
     <Compile Include="Assets\Scripts\MouseWorld.cs" />
+    <Compile Include="Assets\Scripts\Utilitys\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Utilitys\ItemSOList.cs" />
+    <Compile Include="Assets\Scripts\Orders\OrderItemList.cs" />
+    <Compile Include="Assets\Scripts\Orders\OrderSO.cs" />
+    <Compile Include="Assets\Scripts\Orders\OrderSystem.cs" />
+    <Compile Include="Assets\Scripts\MoveAction.cs" />
     <Compile Include="Assets\Scripts\Station.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\ClientUnit.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
   </ItemGroup>
   <ItemGroup>
