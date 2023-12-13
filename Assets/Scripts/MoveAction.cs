@@ -34,4 +34,9 @@ public class MoveAction : MonoBehaviour
         OnReachPosition = onReachPosition;
         this.finalPosition = finalPosition;
     }
+
+    public bool IsWalking()
+    {
+        return canMove;
+    }
 }

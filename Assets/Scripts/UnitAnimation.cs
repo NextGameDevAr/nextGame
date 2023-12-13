@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class UnitAnimator : MonoBehaviour
+public abstract class UnitAnimation : MonoBehaviour
 {
     private const string IS_WALKING = "IsWalking";
 
