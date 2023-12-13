@@ -569,7 +569,7 @@ PrefabInstance:
     - target: {fileID: 8123893557418582109, guid: 13fadb94b6019ee46a868d5f17412b60,
         type: 3}
       propertyPath: mouseStationLayerMask.m_Bits
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8123893557418582110, guid: 13fadb94b6019ee46a868d5f17412b60,
         type: 3}
@@ -996,6 +996,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ClientUnit
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757096148712769898, guid: 2851202fdc27902418bec88687a926f0,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 451fd980a4983dc429b5095ee557e8a9, type: 2}
+    - target: {fileID: 7757096148712769898, guid: 2851202fdc27902418bec88687a926f0,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757096148712769898, guid: 2851202fdc27902418bec88687a926f0,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8529822288164115403, guid: 2851202fdc27902418bec88687a926f0,
         type: 3}
