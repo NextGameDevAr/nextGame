@@ -23,8 +23,9 @@ public class MoveAction : MonoBehaviour
         else
         {
             canMove = false;
-            OnReachPosition?.Invoke();
             transform.position = finalPosition;
+
+            OnReachPosition?.Invoke();
         }
 
     }

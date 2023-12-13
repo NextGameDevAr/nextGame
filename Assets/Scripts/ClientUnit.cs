@@ -6,8 +6,9 @@ public class ClientUnit : Unit
 {
     [SerializeField] private OrderCounter currentOrderCounter;
 
-    public void SetOrderCounter(OrderCounter orderCounter)
+    public void StartBuying(OrderCounter orderCounter, Vector3 spawnPosition)
     {
+        transform.position = spawnPosition;
         currentOrderCounter = orderCounter;
         moveAction.Move(orderCounter.GetClientSpot(), MakeAnOrder);
     }
