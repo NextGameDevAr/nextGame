@@ -8,17 +8,32 @@ public class Unit : MonoBehaviour
 {
     [SerializeField] internal MoveAction moveAction;
     [SerializeField] internal Transform itemPosition;
+    [SerializeField] internal IInteractive interactiveObject;
+    [SerializeField] internal bool canMove;
 
     private void Awake()
     {
         moveAction = GetComponent<MoveAction>();
+        canMove = true;
+    }
+    public void Move(IInteractive interactiveObject)
+    {
+        if (canMove)
+        {
+            canMove = false;
+            this.interactiveObject = interactiveObject;
+            moveAction.Move(interactiveObject.GetUnitSpotPosition(), Interact);
+        }
     }
 
-    public void Update()
+    private void Interact()
     {
+        interactiveObject.Interact(OnInteractComplete);
     }
-    public void Move(Vector3 finalPosition, Action onReachPosition)
+
+    private void OnInteractComplete()
     {
-       moveAction.Move(finalPosition, onReachPosition);
+        canMove = true;
+        interactiveObject = null;
     }
 }

@@ -5,7 +5,7 @@ public class MouseWorld : MonoBehaviour
 {
     private static MouseWorld instance;
     [SerializeField] private LayerMask mousePlaneLayerMask;
-    [SerializeField] private LayerMask mouseStationLayerMask;
+    [SerializeField] private LayerMask mouseInteractiveLayerMask;
 
     private void Awake()
     {
@@ -19,14 +19,14 @@ public class MouseWorld : MonoBehaviour
         return raycastHit.point;
     }
 
-    public static bool TryToGetStation(out Station station)
+    public static bool TryToGetInteractive(out IInteractive interactive)
     {
-        station = null;
+        interactive = null;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        bool isStation = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, instance.mouseStationLayerMask);
+        bool isStation = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, instance.mouseInteractiveLayerMask);
         if(isStation)
         {
-            station = raycastHit.collider.GetComponent<Station>();
+            interactive = raycastHit.collider.GetComponent<IInteractive>();
         }
         return isStation;
     }

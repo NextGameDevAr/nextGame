@@ -3,38 +3,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrderCounter : MonoBehaviour
+public class OrderCounter : MonoBehaviour, IInteractive
 {
     [SerializeField] private OrderCounterVisual visual;
     [SerializeField] private Transform clientSpot;
+    [SerializeField] private Transform workerSpot;
+    [SerializeField] private ClientUnit currentClient;
+    [SerializeField] private Unit currentUnit;
 
     private OrderSO currentOrder;
-    private Action OnOrderComplete;
 
     public void MakeAnOrder(Action onOrderComplete)
     {
-        OnOrderComplete = onOrderComplete;
         currentOrder = OrderSystem.Instance.GetAnOrder();
         visual.ShowOrder(currentOrder.item.sprite);
-        StartCoroutine(Wait3Seconds());
+        onOrderComplete?.Invoke();
     }
 
-    private IEnumerator Wait3Seconds()
-    {
-        yield return new WaitForSeconds(5);
-        DeliverOrder(currentOrder);
-    }
-
-    public void DeliverOrder(OrderSO order)
+    public void DeliverOrder(Action onOrderComplete)
     {
         visual.HideOrder();
         currentOrder = null;
-        OnOrderComplete?.Invoke();
         ClientUnitSystem.Instance.AddOrderCounterAsAvailable(this);
+        currentClient.LeaveOrderCounter();
+        onOrderComplete?.Invoke();
+    }
+
+    public void SetClient(ClientUnit client)
+    {
+        currentClient = client;
     }
 
     public Vector3 GetClientSpot()
     {
         return clientSpot.position;
+    }
+
+    public Vector3 GetUnitSpotPosition()
+    {
+        return workerSpot.position;
+    }
+
+    public void Interact(Action OnFinishInteraction)
+    {
+        if(!HasAnOrder())
+        {
+            MakeAnOrder(OnFinishInteraction);
+        } else
+        {
+            DeliverOrder(OnFinishInteraction);
+        }
+    }
+
+    private bool HasAnOrder()
+    {
+        return currentOrder != null;
     }
 }

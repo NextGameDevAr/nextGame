@@ -10,14 +10,20 @@ public class ClientUnit : Unit
     {
         transform.position = spawnPosition;
         currentOrderCounter = orderCounter;
-        moveAction.Move(orderCounter.GetClientSpot(), MakeAnOrder);
+        moveAction.Move(orderCounter.GetClientSpot(), WaitToBeAttended);
+    }
+
+
+    private void WaitToBeAttended()
+    {
+        currentOrderCounter.SetClient(this);
     }
     private void MakeAnOrder()
     {
         currentOrderCounter.MakeAnOrder(LeaveOrderCounter);
     }
 
-    private void LeaveOrderCounter()
+    public void LeaveOrderCounter()
     {
         moveAction.Move(ClientUnitSystem.Instance.GetClientUnitExitPosition(), SetAsAvaliable);
     }
