@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9995303094989138}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: ClientSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,6 +39,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 282712315431360590, guid: 4c514167361b54c429367817e3fca7aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 607894376983156849, guid: 4c514167361b54c429367817e3fca7aa,
+        type: 3}
+      propertyPath: m_Name
+      value: WorkerSpot
+      objectReference: {fileID: 0}
+    - target: {fileID: 607894376983156849, guid: 4c514167361b54c429367817e3fca7aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769457074282243284, guid: 4c514167361b54c429367817e3fca7aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1912018948057346120, guid: 4c514167361b54c429367817e3fca7aa,
         type: 3}
       propertyPath: imageGroup
@@ -48,6 +68,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FrontDeskOrderCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214037947132476606, guid: 4c514167361b54c429367817e3fca7aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155453096707124750, guid: 4c514167361b54c429367817e3fca7aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4723794288446623278, guid: 4c514167361b54c429367817e3fca7aa,
         type: 3}
@@ -104,10 +134,25 @@ PrefabInstance:
       propertyPath: clientSpot
       value: 
       objectReference: {fileID: 9995303094989138}
+    - target: {fileID: 7294165415196778353, guid: 4c514167361b54c429367817e3fca7aa,
+        type: 3}
+      propertyPath: workerSpot
+      value: 
+      objectReference: {fileID: 6128047757741763847}
     - target: {fileID: 8298401948284941725, guid: 4c514167361b54c429367817e3fca7aa,
         type: 3}
       propertyPath: m_Sprite
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806083270613111911, guid: 4c514167361b54c429367817e3fca7aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8875062603044213106, guid: 4c514167361b54c429367817e3fca7aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5620839573212762107, guid: 4c514167361b54c429367817e3fca7aa, type: 3}
@@ -135,6 +180,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6143169752110068195}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &6128047757741763847 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 21355405043195108, guid: 4c514167361b54c429367817e3fca7aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 6143169752110068195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7893157211665376261 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4092308600445294054, guid: 4c514167361b54c429367817e3fca7aa,
@@ -152,6 +203,10 @@ PrefabInstance:
     - target: {fileID: 1906384758145082, guid: d19c36dc5f97d444fa54380cf09bd828, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Crate_Question_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906384758145082, guid: d19c36dc5f97d444fa54380cf09bd828, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4625151964636756, guid: d19c36dc5f97d444fa54380cf09bd828, type: 3}
       propertyPath: m_LocalPosition.x
