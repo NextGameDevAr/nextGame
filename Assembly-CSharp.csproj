@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\ClientUnitAnimation.cs" />
     <Compile Include="Assets\Scripts\Utilitys\Singleton.cs" />
     <Compile Include="Assets\Scripts\Utilitys\ItemSOList.cs" />
+    <Compile Include="Assets\Scripts\GarbageBin.cs" />
     <Compile Include="Assets\Scripts\IInteractive.cs" />
     <Compile Include="Assets\Scripts\Orders\OrderItemList.cs" />
     <Compile Include="Assets\Scripts\Orders\OrderSO.cs" />

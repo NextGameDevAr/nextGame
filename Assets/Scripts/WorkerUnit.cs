@@ -9,9 +9,18 @@ public class WorkerUnit : Unit
 
     internal override void Interact()
     {
-        if(interactiveObject is Station)
+        StationInteraction();
+
+        OrderCounterInteraction();
+
+        GarbageBinInteraction();
+    }
+
+    private void StationInteraction()
+    {
+        if (interactiveObject is Station)
         {
-            if(HasItem()) 
+            if (HasItem())
             {
                 OnInteractionComplete();
                 return;
@@ -19,10 +28,14 @@ public class WorkerUnit : Unit
             Station station = (Station)interactiveObject;
             station.Interact(new StationInteractiveParams(OnStationInteractionComplete));
         }
-        if(interactiveObject is OrderCounter)
+    }
+
+    private void OrderCounterInteraction()
+    {
+        if (interactiveObject is OrderCounter)
         {
             OrderCounter orderCounter = (OrderCounter)interactiveObject;
-            if(HasItem())
+            if (HasItem())
             {
                 DeliverOrderCounterInteractiveParams orderCounterParams = new DeliverOrderCounterInteractiveParams(this.item, DeilverOrder);
                 orderCounter.Interact(orderCounterParams);
@@ -33,6 +46,20 @@ public class WorkerUnit : Unit
                 orderCounter.Interact(orderCounterParams);
             }
 
+        }
+    }
+
+    private void GarbageBinInteraction()
+    {
+        if (interactiveObject is GarbageBin)
+        {
+            if (!HasItem())
+            {
+                OnInteractionComplete();
+                return;
+            }
+            GarbageBin garbageBin = interactiveObject as GarbageBin;
+            garbageBin.Interact(new GargbageBinInteractiveParams(OnInteractionComplete, this.item));
         }
     }
 
