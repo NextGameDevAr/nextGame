@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainUnitController : Singleton<MainUnitController>
+public class MainWorkerUnitController : Singleton<MainWorkerUnitController>
 {
     [SerializeField] private WorkerUnit mainUnit;
     private void Update()
