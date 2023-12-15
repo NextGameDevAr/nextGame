@@ -28,7 +28,7 @@ public class Unit : MonoBehaviour
 
     private void Interact()
     {
-        interactiveObject.Interact(OnInteractComplete);
+        interactiveObject.Interact( new BaseInteractiveParams (OnInteractComplete));
     }
 
     private void OnInteractComplete()

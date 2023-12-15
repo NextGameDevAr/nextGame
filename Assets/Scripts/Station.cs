@@ -46,10 +46,10 @@ public class Station : MonoBehaviour, IInteractive, IPointerClickHandler
         return unitSpot.position;
     }
 
-    public void Interact(Action onStationFinish)
+    public void Interact(BaseInteractiveParams interactiveParams)
     {
         isWorking = true;
-        OnStationFinish = onStationFinish;
+        OnStationFinish = interactiveParams.baseOnInteractionComplete;
     }
 
     public void OnPointerClick(PointerEventData eventData)

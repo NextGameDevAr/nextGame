@@ -44,14 +44,14 @@ public class OrderCounter : MonoBehaviour, IInteractive
         return workerSpot.position;
     }
 
-    public void Interact(Action OnFinishInteraction)
+    public void Interact(BaseInteractiveParams interactiveParams)
     {
         if(!HasAnOrder())
         {
-            MakeAnOrder(OnFinishInteraction);
+            MakeAnOrder(interactiveParams.baseOnInteractionComplete);
         } else
         {
-            DeliverOrder(OnFinishInteraction);
+            DeliverOrder(interactiveParams.baseOnInteractionComplete);
         }
     }
 
