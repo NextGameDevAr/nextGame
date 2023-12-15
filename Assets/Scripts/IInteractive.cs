@@ -10,12 +10,6 @@ public interface IInteractive
 }
 
 
-public class BaseInteractiveParams
+public abstract class BaseInteractiveParams
 {
-    public Action baseOnInteractionComplete;
-
-    public BaseInteractiveParams(Action baseOnInteractionComplete)
-    {
-        this.baseOnInteractionComplete = baseOnInteractionComplete;
-    }
 }

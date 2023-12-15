@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public abstract class Unit : MonoBehaviour
 {
     [SerializeField] internal MoveAction moveAction;
-    [SerializeField] internal Transform itemPosition;
     [SerializeField] internal IInteractive interactiveObject;
     [SerializeField] internal bool canMove;
 
-    private void Awake()
+    internal void Awake()
     {
         moveAction = GetComponent<MoveAction>();
         canMove = true;
@@ -26,12 +25,10 @@ public class Unit : MonoBehaviour
         }
     }
 
-    private void Interact()
-    {
-        interactiveObject.Interact( new BaseInteractiveParams (OnInteractComplete));
-    }
+    internal abstract void Interact();
+    
 
-    private void OnInteractComplete()
+    internal void OnInteractionComplete()
     {
         canMove = true;
         interactiveObject = null;

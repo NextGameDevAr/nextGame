@@ -32,4 +32,9 @@ public class ClientUnit : Unit
     {
         ClientUnitSystem.Instance.AddClientAsAvailable(this);
     }
+
+    internal override void Interact()
+    {
+        throw new System.NotImplementedException();
+    }
 }

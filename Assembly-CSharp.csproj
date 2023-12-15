@@ -78,8 +78,8 @@
     <Compile Include="Assets\Scripts\Station.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
     <Compile Include="Assets\Scripts\WorkerUnitAnimation.cs" />
-    <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\ClientUnit.cs" />
+    <Compile Include="Assets\Scripts\Order.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
   </ItemGroup>
   <ItemGroup>

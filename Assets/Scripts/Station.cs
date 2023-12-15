@@ -8,21 +8,21 @@ public class Station : MonoBehaviour, IInteractive, IPointerClickHandler
 {
     [SerializeField] private Transform unitSpot;
     [SerializeField] private ProgressBar progressBar;
-    [SerializeField] private Transform itemPrefab;
-    [SerializeField] private Action OnStationFinish;
-    [SerializeField] private bool isWorking;
+    [SerializeField] private OrderSO orderSO;
+    [SerializeField] private Action<Order> OnStationInteractionComplete;
+    [SerializeField] private bool isBusy;
     [SerializeField] private float currentProgrees;
 
     private void Update()
     {
         if(currentProgrees > 100)
         {
-            isWorking = false;
+            isBusy = false;
             currentProgrees = 0;
-            OnStationFinish?.Invoke();
+            OnStationInteractionComplete?.Invoke(CreateItem());
         }
 
-        if(isWorking)
+        if(isBusy)
         {
             currentProgrees +=  Time.deltaTime * 10;
             progressBar.UpdateProgress(currentProgrees/100);
@@ -30,15 +30,22 @@ public class Station : MonoBehaviour, IInteractive, IPointerClickHandler
     }
     public void IncreaseProgress()
     {
-        if (isWorking)
+        if (isBusy)
         {
             currentProgrees += 10f;
             progressBar.UpdateProgress(currentProgrees / 100);
         }
     }
-    public bool IsWorking()
+    public bool IsBusy()
     {
-        return isWorking;
+        return isBusy;
+    }
+
+    private Order CreateItem()
+    {
+        Transform item = Instantiate(orderSO.item.prefab);
+        item.gameObject.name = orderSO.id;
+        return item.GetComponent<Order>();
     }
 
     public Vector3 GetUnitSpotPosition()
@@ -48,13 +55,23 @@ public class Station : MonoBehaviour, IInteractive, IPointerClickHandler
 
     public void Interact(BaseInteractiveParams interactiveParams)
     {
-        isWorking = true;
-        OnStationFinish = interactiveParams.baseOnInteractionComplete;
+        isBusy = true;
+        StationInteractiveParams stationParams = interactiveParams as StationInteractiveParams;
+        OnStationInteractionComplete = stationParams.onStationInteractionComplete; ;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("pointerclcilk");
         IncreaseProgress();
+    }
+}
+
+public class StationInteractiveParams : BaseInteractiveParams
+{
+    public Action<Order> onStationInteractionComplete;
+
+    public StationInteractiveParams(Action<Order> onStationInteractionComplete)
+    {
+        this.onStationInteractionComplete = onStationInteractionComplete;
     }
 }

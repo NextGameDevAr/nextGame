@@ -20,13 +20,12 @@ public class OrderCounter : MonoBehaviour, IInteractive
         onOrderComplete?.Invoke();
     }
 
-    public void DeliverOrder(Action onOrderComplete)
+    public void DeliverOrder(Order item)
     {
         visual.HideOrder();
         currentOrder = null;
         ClientUnitSystem.Instance.AddOrderCounterAsAvailable(this);
         currentClient.LeaveOrderCounter();
-        onOrderComplete?.Invoke();
     }
 
     public void SetClient(ClientUnit client)
@@ -44,19 +43,76 @@ public class OrderCounter : MonoBehaviour, IInteractive
         return workerSpot.position;
     }
 
+    public bool HasClient()
+    {
+        return currentClient != null;
+    }
+
     public void Interact(BaseInteractiveParams interactiveParams)
     {
-        if(!HasAnOrder())
+        if(interactiveParams is DeliverOrderCounterInteractiveParams)
         {
-            MakeAnOrder(interactiveParams.baseOnInteractionComplete);
-        } else
-        {
-            DeliverOrder(interactiveParams.baseOnInteractionComplete);
+            DeliverOrder(interactiveParams as DeliverOrderCounterInteractiveParams);
         }
+        if(interactiveParams is OrderCounterInteractiveParams)
+        {
+            TakeAnOrder(interactiveParams as OrderCounterInteractiveParams);
+        }
+    }
+
+    private void DeliverOrder(DeliverOrderCounterInteractiveParams deliverParams)
+    {
+        bool canDeilverOrder = CanDeliverOrder(deliverParams.deliveryItem);
+        if (canDeilverOrder)
+        {
+            DeliverOrder(deliverParams.deliveryItem);
+        }
+        deliverParams.onInteractionComplete(canDeilverOrder);
+    }
+
+    private void TakeAnOrder(OrderCounterInteractiveParams orderParams)
+    {
+        if(HasClient())
+        {
+            MakeAnOrder(orderParams.onInteractionComplete);
+        }
+        else
+        {
+            orderParams.onInteractionComplete?.Invoke();
+        }
+    }
+
+    private bool CanDeliverOrder(Order item)
+    {
+        bool canDeliver = HasAnOrder() && currentOrder.id == item.GetId();
+        
+        return canDeliver;
     }
 
     private bool HasAnOrder()
     {
         return currentOrder != null;
+    }
+}
+
+public class OrderCounterInteractiveParams : BaseInteractiveParams
+{
+    public Action onInteractionComplete;
+
+    public OrderCounterInteractiveParams(Action onInteractionComplete)
+    {
+        this.onInteractionComplete = onInteractionComplete;
+    }
+}
+
+public class DeliverOrderCounterInteractiveParams : BaseInteractiveParams
+{
+    public Order deliveryItem;
+    public Action<bool> onInteractionComplete;
+
+    public DeliverOrderCounterInteractiveParams(Order deliveryItem, Action<bool> onInteractionComplete)
+    {
+        this.deliveryItem = deliveryItem;
+        this.onInteractionComplete = onInteractionComplete;
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public class OrderSO : ScriptableObject
 {
-    public int id;
+    public string id;
     public OrderItem item;
     public int value;
 }

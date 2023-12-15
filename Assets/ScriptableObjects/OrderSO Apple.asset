@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 595d9fd05015aa644be11ec19191267c, type: 3}
-  m_Name: OrderSO
+  m_Name: OrderSO Apple
   m_EditorClassIdentifier: 
-  id: 1
+  id: Apple
   item:
     name: 0
-    prefab: {fileID: 0}
-    sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  value: 1
+    prefab: {fileID: 4094581672843016777, guid: 7f0460cbd36f506439821e19279e0c27,
+      type: 3}
+    sprite: {fileID: 21300000, guid: 9e85e88a560512549af1a55e734fd942, type: 3}
+  value: 5
