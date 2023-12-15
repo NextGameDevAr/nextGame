@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\WorkerUnitAnimation.cs" />
     <Compile Include="Assets\Scripts\ClientUnit.cs" />
     <Compile Include="Assets\Scripts\Order.cs" />
+    <Compile Include="Assets\Scripts\Orders\DeliveredOrderVisual.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
   </ItemGroup>
   <ItemGroup>

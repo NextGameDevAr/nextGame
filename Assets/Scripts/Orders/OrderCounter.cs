@@ -10,6 +10,7 @@ public class OrderCounter : MonoBehaviour, IInteractive
     [SerializeField] private Transform workerSpot;
     [SerializeField] private ClientUnit currentClient;
     [SerializeField] private Unit currentUnit;
+    [SerializeField] private DeliveredOrderVisual deliveredOrderVisual;
 
     private OrderSO currentOrder;
 
@@ -67,6 +68,7 @@ public class OrderCounter : MonoBehaviour, IInteractive
         {
             DeliverOrder(deliverParams.deliveryItem);
         }
+        deliveredOrderVisual.PlayDeliverAnimation(canDeilverOrder);
         deliverParams.onInteractionComplete(canDeilverOrder);
     }
 
