@@ -4,21 +4,33 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public abstract class Unit : MonoBehaviour
 {
     [SerializeField] internal MoveAction moveAction;
-    [SerializeField] internal Transform itemPosition;
+    [SerializeField] internal IInteractive interactiveObject;
+    [SerializeField] internal bool canMove;
 
-    private void Awake()
+    internal void Awake()
     {
         moveAction = GetComponent<MoveAction>();
+        canMove = true;
+    }
+    public void Move(IInteractive interactiveObject)
+    {
+        if (canMove)
+        {
+            canMove = false;
+            this.interactiveObject = interactiveObject;
+            moveAction.Move(interactiveObject.GetUnitSpotPosition(), Interact);
+        }
     }
 
-    public void Update()
+    internal abstract void Interact();
+    
+
+    internal void OnInteractionComplete()
     {
-    }
-    public void Move(Vector3 finalPosition, Action onReachPosition)
-    {
-       moveAction.Move(finalPosition, onReachPosition);
+        canMove = true;
+        interactiveObject = null;
     }
 }

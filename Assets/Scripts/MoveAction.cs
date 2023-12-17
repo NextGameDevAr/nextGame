@@ -23,8 +23,9 @@ public class MoveAction : MonoBehaviour
         else
         {
             canMove = false;
-            OnReachPosition?.Invoke();
             transform.position = finalPosition;
+
+            OnReachPosition?.Invoke();
         }
 
     }
@@ -33,5 +34,10 @@ public class MoveAction : MonoBehaviour
         canMove = true;
         OnReachPosition = onReachPosition;
         this.finalPosition = finalPosition;
+    }
+
+    public bool IsWalking()
+    {
+        return canMove;
     }
 }

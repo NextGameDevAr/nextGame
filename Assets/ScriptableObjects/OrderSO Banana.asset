@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 595d9fd05015aa644be11ec19191267c, type: 3}
-  m_Name: OrderSO 1
+  m_Name: OrderSO Banana
   m_EditorClassIdentifier: 
-  id: 0
+  id: Banana
   item:
     name: 0
-    prefab: {fileID: 0}
-    sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  value: 0
+    prefab: {fileID: 4094581672843016777, guid: a989466e101390c4f96cf1a883782293,
+      type: 3}
+    sprite: {fileID: 21300000, guid: 5f438665c33952e4ebad0104a91f69f8, type: 3}
+  value: 10

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ClientUnitSystem : Singleton<ClientUnitSystem>
 {
+    [SerializeField] private Transform spawnPosition;
     [SerializeField] private Transform exitPosition;
     [SerializeField] private List<ClientUnit> avaiableClientUnitList;
     [SerializeField] private List<OrderCounter> avaiableOrderCounterList;
@@ -21,7 +22,7 @@ public class ClientUnitSystem : Singleton<ClientUnitSystem>
         avaiableClientUnitList.Remove(client);
         OrderCounter orderCounter = avaiableOrderCounterList.First();
         avaiableOrderCounterList.Remove(orderCounter);
-        client.SetOrderCounter(orderCounter);
+        client.StartBuying(orderCounter, spawnPosition.position);
     }
 
     public Vector3 GetClientUnitExitPosition()
@@ -32,6 +33,7 @@ public class ClientUnitSystem : Singleton<ClientUnitSystem>
     public void AddClientAsAvailable(ClientUnit clientUnit)
     {
         avaiableClientUnitList.Add(clientUnit);
+        SendClient();
     }
 
     public void AddOrderCounterAsAvailable(OrderCounter orderCounter)

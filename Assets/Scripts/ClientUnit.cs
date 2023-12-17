@@ -6,17 +6,24 @@ public class ClientUnit : Unit
 {
     [SerializeField] private OrderCounter currentOrderCounter;
 
-    public void SetOrderCounter(OrderCounter orderCounter)
+    public void StartBuying(OrderCounter orderCounter, Vector3 spawnPosition)
     {
+        transform.position = spawnPosition;
         currentOrderCounter = orderCounter;
-        moveAction.Move(orderCounter.GetClientSpot(), MakeAnOrder);
+        moveAction.Move(orderCounter.GetClientSpot(), WaitToBeAttended);
+    }
+
+
+    private void WaitToBeAttended()
+    {
+        currentOrderCounter.SetClient(this);
     }
     private void MakeAnOrder()
     {
         currentOrderCounter.MakeAnOrder(LeaveOrderCounter);
     }
 
-    private void LeaveOrderCounter()
+    public void LeaveOrderCounter()
     {
         moveAction.Move(ClientUnitSystem.Instance.GetClientUnitExitPosition(), SetAsAvaliable);
     }
@@ -24,5 +31,10 @@ public class ClientUnit : Unit
     private void SetAsAvaliable()
     {
         ClientUnitSystem.Instance.AddClientAsAvailable(this);
+    }
+
+    internal override void Interact()
+    {
+        throw new System.NotImplementedException();
     }
 }

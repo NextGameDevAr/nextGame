@@ -2,52 +2,76 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Station : MonoBehaviour
+public class Station : MonoBehaviour, IInteractive, IPointerClickHandler
 {
-    [SerializeField] private Transform frontPosition;
+    [SerializeField] private Transform unitSpot;
     [SerializeField] private ProgressBar progressBar;
-    [SerializeField] private Transform itemPrefab;
-    [SerializeField] private Action<Item> OnStationFinish;
-    [SerializeField] private bool isWorking;
+    [SerializeField] private OrderSO orderSO;
+    [SerializeField] private Action<Order> OnStationInteractionComplete;
+    [SerializeField] private bool isBusy;
     [SerializeField] private float currentProgrees;
-
-
-    public Vector3 GetFrontPosition()
-    {
-        return frontPosition.position;
-    }
 
     private void Update()
     {
         if(currentProgrees > 100)
         {
-            isWorking = false;
+            isBusy = false;
             currentProgrees = 0;
-            Item item = Instantiate(itemPrefab).GetComponent<Item>(); 
-            OnStationFinish?.Invoke(item);
+            OnStationInteractionComplete?.Invoke(CreateItem());
         }
 
-        if(isWorking)
+        if(isBusy)
         {
             currentProgrees +=  Time.deltaTime * 10;
             progressBar.UpdateProgress(currentProgrees/100);
         }
     }
-
-    public void StartInteraction(Action<Item> onStationFinish)
-    {
-        OnStationFinish = onStationFinish;
-        isWorking = true;
-    }
-
     public void IncreaseProgress()
     {
-        currentProgrees += 10f;
-        progressBar.UpdateProgress(currentProgrees / 100);
+        if (isBusy)
+        {
+            currentProgrees += 10f;
+            progressBar.UpdateProgress(currentProgrees / 100);
+        }
     }
-    public bool IsWorking()
+    public bool IsBusy()
     {
-        return isWorking;
+        return isBusy;
+    }
+
+    private Order CreateItem()
+    {
+        Transform item = Instantiate(orderSO.item.prefab);
+        item.gameObject.name = orderSO.id;
+        return item.GetComponent<Order>();
+    }
+
+    public Vector3 GetUnitSpotPosition()
+    {
+        return unitSpot.position;
+    }
+
+    public void Interact(BaseInteractiveParams interactiveParams)
+    {
+        isBusy = true;
+        StationInteractiveParams stationParams = interactiveParams as StationInteractiveParams;
+        OnStationInteractionComplete = stationParams.onStationInteractionComplete; ;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        IncreaseProgress();
+    }
+}
+
+public class StationInteractiveParams : BaseInteractiveParams
+{
+    public Action<Order> onStationInteractionComplete;
+
+    public StationInteractiveParams(Action<Order> onStationInteractionComplete)
+    {
+        this.onStationInteractionComplete = onStationInteractionComplete;
     }
 }

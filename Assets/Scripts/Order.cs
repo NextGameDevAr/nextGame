@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Order : MonoBehaviour
 {
+    [SerializeField] OrderSO orderSO;
 
+
+    public string GetId()
+    {
+        return orderSO.id;
+    }
     public void SetParent(Transform parent)
     {
         transform.parent = parent;
