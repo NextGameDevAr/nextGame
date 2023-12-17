@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 5430055775946194962}
   moveAction: {fileID: 4504330289093676877}
+  workerUnit: {fileID: 8906148153144286181}
 --- !u!114 &8906148153144286181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,8 +116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveAction: {fileID: 4504330289093676877}
-  itemPosition: {fileID: 982448496176879536}
   canMove: 0
+  item: {fileID: 0}
+  itemPosition: {fileID: 982448496176879536}
 --- !u!4 &982448496176879536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1032324689596367142, guid: 8577ba88f14af3841b3954fc58b908b3,

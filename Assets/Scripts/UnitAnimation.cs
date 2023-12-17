@@ -6,10 +6,10 @@ public abstract class UnitAnimation : MonoBehaviour
 {
     private const string IS_WALKING = "IsWalking";
 
-    [SerializeField] private Animator animator;
+    [SerializeField] internal Animator animator;
     [SerializeField] private MoveAction moveAction;
 
-    private void Awake()
+    internal void Awake()
     {
         if(animator == null)
         {
@@ -17,12 +17,12 @@ public abstract class UnitAnimation : MonoBehaviour
         }
     }
 
-    private void Update()
+    internal void Update()
     {
-        SetIsWalking();
+        HandlerWalkingAnimation();
     }
 
-    private void SetIsWalking()
+    private void HandlerWalkingAnimation()
     {
         animator.SetBool(IS_WALKING, moveAction.IsWalking());
     }

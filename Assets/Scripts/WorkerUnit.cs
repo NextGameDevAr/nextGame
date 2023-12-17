@@ -1,22 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WorkerUnit : Unit
 {
+    [SerializeField] public Action<bool> OnStationInteraction;
+
+
     [SerializeField] private Order item;
     [SerializeField] private Transform itemPosition;
 
+
     internal override void Interact()
     {
-        StationInteraction();
+        HandlerStationInteraction();
 
-        OrderCounterInteraction();
+        HandlerOrderCounterInteraction();
 
-        GarbageBinInteraction();
+        HandlerGarbageBinInteraction();
     }
 
-    private void StationInteraction()
+    private void HandlerStationInteraction()
     {
         if (interactiveObject is Station)
         {
@@ -27,10 +32,11 @@ public class WorkerUnit : Unit
             }
             Station station = (Station)interactiveObject;
             station.Interact(new StationInteractiveParams(OnStationInteractionComplete));
+            OnStationInteraction?.Invoke(true);
         }
     }
 
-    private void OrderCounterInteraction()
+    private void HandlerOrderCounterInteraction()
     {
         if (interactiveObject is OrderCounter)
         {
@@ -49,7 +55,7 @@ public class WorkerUnit : Unit
         }
     }
 
-    private void GarbageBinInteraction()
+    private void HandlerGarbageBinInteraction()
     {
         if (interactiveObject is GarbageBin)
         {
@@ -83,6 +89,7 @@ public class WorkerUnit : Unit
     {
         this.item = item;
         item.SetParent(itemPosition);
+        OnStationInteraction?.Invoke(false);
         OnInteractionComplete();
     }
 }
